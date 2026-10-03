@@ -1,0 +1,46 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "5.2",
+	"Category": "",
+	"Description": "coreDS Unreal sample: integrating a C++ model with the Model Integration specification",
+	"Modules": [
+		{
+			"Name": "coreDSModelIntegration",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "coreDSModule",
+			"Enabled": true
+		},
+		{
+			"Name": "coreDSGeoReferencingSystemSupport",
+			"Enabled": false
+		},
+		{
+			"Name": "coreDSCesiumSupport",
+			"Enabled": false
+		},
+		{
+			"Name": "PythonScriptPlugin",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		},
+		{
+			"Name": "EditorScriptingUtilities",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		}
+	],
+	"TargetPlatforms": [
+		"Windows",
+		"Mac",
+		"Linux"
+	]
+}

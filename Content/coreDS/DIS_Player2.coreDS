@@ -1,0 +1,456 @@
+{
+   "ConfigType" : 1,
+   "DISConfig" : {
+      "AutomaticEntityStateUpdateManagement" : true,
+      "DISAppNumber" : 3002,
+      "DISDestinationAddress" : "192.168.2.255",
+      "DISDisVer" : 5,
+      "DISEnableExpertMode" : true,
+      "DISExerciseID" : 1,
+      "DISJoinMulticastGroup" : false,
+      "DISMulticastAddress" : "239.0.0.1",
+      "DISNIA" : "192.168.2.226",
+      "DISPort" : 3000,
+      "DISRcvBuffSize" : 2048,
+      "DISSiteNumber" : 1,
+      "DISTimeStampFormat" : 0,
+      "DISUseAsyncIO" : false,
+      "DropOutofSequencePacketAbsolute" : false,
+      "DropOutofSequencePacketEntity" : false,
+      "EntityStatePDUUpdateFrequency" : 1,
+      "KeepAliveTimeout" : 5,
+      "SendCompleteEntityStatePDUPeriodically" : true,
+      "UseESUForKeepAlive" : true
+   },
+   "Federate" : {
+      "AutoAchieveSyncPoints" : false,
+      "CallbackReportingLevel" : 1,
+      "CallbacksToLog" : false,
+      "CreateFederationExecution" : true,
+      "DeleteFederationExecution" : true,
+      "DiscoverEverything" : false,
+      "EnableAsynchronousDelivery" : false,
+      "EnableProvideAttributeValues" : false,
+      "EnableSynchronization" : false,
+      "EnableTimeConstrained" : false,
+      "EnableTimeRegulation" : false,
+      "FOMFileList" : [
+         "C:codeds.tools_gitcoreDSUnrealSamplescoreDSUnreal_Sample_ModelIntegrationPluginscoreDSModuleThirdPartycoreDS\binVC143dReleaseDIS_V5_IEEE_1278.1-1995_expert.xml"
+      ],
+      "FederateName" : "",
+      "FederateType" : "",
+      "FederationName" : "",
+      "HLACallbackDeliveryMecanism" : "HLA_EVOKED",
+      "LogToFile" : {
+         "Destination" : "",
+         "Enabled" : false,
+         "Filter" : "%Severity% >= error",
+         "MaxVerbose" : "%Severity% >= error"
+      },
+      "LogicalTimeImplementationName" : "Double",
+      "LookAhead" : 0.10,
+      "MIMmodule" : "",
+      "MaximumCallbackTime" : 0.10,
+      "MinimumCallbackTime" : 0.0,
+      "ObjectPublishList" : [
+         {
+            "Attributes" : [
+               "EntityID",
+               "ForceID",
+               "NumberOfVariableParameters",
+               "EntityType",
+               "AlternativeEntityType",
+               "LinearVelocity",
+               "LocationInWorldCoordinates",
+               "Orientation",
+               "Appearance",
+               "DeadReckoning",
+               "Marking",
+               "Capabilities",
+               "VariableParameters"
+            ],
+            "Object" : "DISobject.Entity State"
+         }
+      ],
+      "ObjectSubcribeList" : [
+         {
+            "Attributes" : [
+               "EntityID",
+               "ForceID",
+               "NumberOfVariableParameters",
+               "EntityType",
+               "AlternativeEntityType",
+               "LinearVelocity",
+               "LocationInWorldCoordinates",
+               "Orientation",
+               "Appearance",
+               "DeadReckoning",
+               "Marking",
+               "Capabilities",
+               "VariableParameters"
+            ],
+            "Object" : "DISobject.Entity State"
+         }
+      ],
+      "OptionalFOMFileList" : null,
+      "RegisterSynchronizationPoint" : false,
+      "RequestAttributeValuesUpdate" : true,
+      "ResignAction" : "Delete Objects",
+      "StartAtGALT" : false,
+      "SynchronizationPointName" : "SyncPoint",
+      "TimeStep" : 1.0
+   },
+   "Metadata" : {
+      "FedInfoAppDom" : "",
+      "FedInfoMOMVer" : "",
+      "FedInfoModDate" : "",
+      "FedInfoName" : "",
+      "FedInfoPurposes" : "",
+      "FedInfoSponsor" : "",
+      "FedInfoType" : "",
+      "FedInfoVersion" : "",
+      "POCEmail" : "",
+      "POCFirstName" : "",
+      "POCHonorName" : "",
+      "POCLastName" : "",
+      "POCOrganisationName" : "",
+      "POCPhoneNumber" : ""
+   },
+   "ObjectLinkSimLocalIn" : [
+      {
+         "DISobject.Entity State" : [
+            "AutomaticMode"
+         ]
+      }
+   ],
+   "ObjectLinkSimLocalOut" : [
+      {
+         "AutomaticMode" : "DISobject.Entity State"
+      }
+   ],
+   "ObjectMappingIn" : [
+      {
+         "DISobject.Entity State" : [
+            {
+               "DISobject.Entity State" : "AutomaticMode"
+            },
+            {
+               "DISobject.Entity State" : [
+                  {
+                     "On Item Updated" : "convertPositionFromDISToUnreal.lua"
+                  }
+               ]
+            },
+            {
+               "DISobject.Entity State" : "AutomaticMode"
+            },
+            {
+               "Appearance" : [
+                  {
+                     "Appearance" : "Appearance"
+                  }
+               ]
+            },
+            {
+               "DISobject.Entity State" : "AutomaticMode"
+            },
+            {
+               "EntityType" : [
+                  {
+                     "On Data Received" : "UseEntityTypeAsUniqueIdentifier.lua"
+                  }
+               ]
+            },
+            {
+               "DISobject.Entity State" : "AutomaticMode"
+            },
+            {
+               "LocationInWorldCoordinates" : [
+                  {
+                     "X" : "Location.X"
+                  },
+                  {
+                     "Y" : "Location.Y"
+                  },
+                  {
+                     "Z" : "Location.Z"
+                  }
+               ]
+            },
+            {
+               "DISobject.Entity State" : "AutomaticMode"
+            },
+            {
+               "Marking" : [
+                  {
+                     "MarkingData" : "ActorName"
+                  }
+               ]
+            },
+            {
+               "DISobject.Entity State" : "AutomaticMode"
+            },
+            {
+               "Orientation" : [
+                  {
+                     "Phi" : "Orientation.phi"
+                  },
+                  {
+                     "Psi" : "Orientation.psi"
+                  },
+                  {
+                     "Theta" : "Orientation.theta"
+                  }
+               ]
+            },
+            {
+               "DISobject.Entity State" : "AutomaticMode"
+            },
+            {
+               "VariableParameters" : [
+                  {
+                     "VariableParameters" : "ArticulatedParts"
+                  }
+               ]
+            }
+         ]
+      }
+   ],
+   "ObjectMappingOut" : [
+      {
+         "AutomaticMode" : [
+            {
+               "AutomaticMode" : "DISobject.Entity State"
+            },
+            {
+               "AlternativeEntityType" : [
+                  {
+                     "Category" : "EntityType_category"
+                  },
+                  {
+                     "CountryCode" : "EntityType_country"
+                  },
+                  {
+                     "Domain" : "EntityType_domain"
+                  },
+                  {
+                     "EntityKind" : "EntityType_kind"
+                  },
+                  {
+                     "Extra" : "EntityType_extra"
+                  },
+                  {
+                     "Specific" : "EntityType_specific"
+                  },
+                  {
+                     "Subcategory" : "EntityType_subcategory"
+                  }
+               ]
+            },
+            {
+               "AutomaticMode" : "DISobject.Entity State"
+            },
+            {
+               "Appearance" : [
+                  {
+                     "Appearance" : "Appearance"
+                  }
+               ]
+            },
+            {
+               "AutomaticMode" : "DISobject.Entity State"
+            },
+            {
+               "Capabilities" : [
+                  {
+                     "Capabilities" : 0
+                  }
+               ]
+            },
+            {
+               "AutomaticMode" : "DISobject.Entity State"
+            },
+            {
+               "DeadReckoning" : [
+                  {
+                     "AngularVelocity.XAngularVelocity" : 0.0
+                  },
+                  {
+                     "AngularVelocity.YAngularVelocity" : 0.0
+                  },
+                  {
+                     "AngularVelocity.ZAngularVelocity" : 0.0
+                  },
+                  {
+                     "DeadReckoningAlgorithm" : 1
+                  },
+                  {
+                     "LinearVelocity.LinearAccelerationX" : 0.0
+                  },
+                  {
+                     "LinearVelocity.LinearAccelerationY" : 0.0
+                  },
+                  {
+                     "LinearVelocity.LinearAccelerationZ" : 0.0
+                  },
+                  {
+                     "OtherParameters" : "0"
+                  }
+               ]
+            },
+            {
+               "AutomaticMode" : "DISobject.Entity State"
+            },
+            {
+               "EntityID" : [
+                  {
+                     "EntityIdentify" : "Automatic Generated Object ID"
+                  },
+                  {
+                     "SimulationAddress.ApplicationID" : "Configured Application Number"
+                  },
+                  {
+                     "SimulationAddress.SiteID" : "Configured Site Number"
+                  }
+               ]
+            },
+            {
+               "AutomaticMode" : "DISobject.Entity State"
+            },
+            {
+               "EntityType" : [
+                  {
+                     "Category" : "EntityType_category"
+                  },
+                  {
+                     "CountryCode" : "EntityType_country"
+                  },
+                  {
+                     "Domain" : "EntityType_domain"
+                  },
+                  {
+                     "EntityKind" : "EntityType_kind"
+                  },
+                  {
+                     "Extra" : "EntityType_extra"
+                  },
+                  {
+                     "Specific" : "EntityType_specific"
+                  },
+                  {
+                     "Subcategory" : "EntityType_subcategory"
+                  }
+               ]
+            },
+            {
+               "AutomaticMode" : "DISobject.Entity State"
+            },
+            {
+               "ForceID" : [
+                  {
+                     "ForceID" : 1
+                  }
+               ]
+            },
+            {
+               "AutomaticMode" : "DISobject.Entity State"
+            },
+            {
+               "LinearVelocity" : [
+                  {
+                     "XVelocity" : 0.0
+                  },
+                  {
+                     "YVelocity" : 0.0
+                  },
+                  {
+                     "ZVelocity" : 0.0
+                  }
+               ]
+            },
+            {
+               "AutomaticMode" : "DISobject.Entity State"
+            },
+            {
+               "LocationInWorldCoordinates" : [
+                  {
+                     "On Data Updated" : "convertUnrealPositionToDIS.lua"
+                  },
+                  {
+                     "X" : "Location.X"
+                  },
+                  {
+                     "Y" : "Location.Y"
+                  },
+                  {
+                     "Z" : "Location.Z"
+                  }
+               ]
+            },
+            {
+               "AutomaticMode" : "DISobject.Entity State"
+            },
+            {
+               "Marking" : [
+                  {
+                     "MarkingData" : "ActorName"
+                  },
+                  {
+                     "MarkingEncodingType" : 1
+                  }
+               ]
+            },
+            {
+               "AutomaticMode" : "DISobject.Entity State"
+            },
+            {
+               "NumberOfVariableParameters" : [
+                  {
+                     "NumberOfVariableParameters" : "NumberOfParts"
+                  }
+               ]
+            },
+            {
+               "AutomaticMode" : "DISobject.Entity State"
+            },
+            {
+               "Orientation" : [
+                  {
+                     "On Data Updated" : "convertOrientationFromUnrealToDIS.lua"
+                  },
+                  {
+                     "Phi" : "Orientation.phi"
+                  },
+                  {
+                     "Psi" : "Orientation.psi"
+                  },
+                  {
+                     "Theta" : "Orientation.theta"
+                  }
+               ]
+            },
+            {
+               "AutomaticMode" : "DISobject.Entity State"
+            },
+            {
+               "VariableParameters" : [
+                  {
+                     "VariableParameters" : "ArticulatedParts"
+                  }
+               ]
+            }
+         ]
+      }
+   ],
+   "RTIConfiguration" : {
+      "Compiler" : "DLC",
+      "DLLName" : "DLC_DIS-V5",
+      "LocalDesignatorsExtra" : "",
+      "Manufacturer" : "",
+      "OverEncDecFOM" : "",
+      "RTILibPath" : "",
+      "Standard" : "DIS V5",
+      "SystemVariables" : null
+   },
+   "Version" : "3.0.574"
+}
