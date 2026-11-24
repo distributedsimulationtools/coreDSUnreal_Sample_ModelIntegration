@@ -1,13 +1,13 @@
-coreDSModelIntegration
-======================
+Model Integration sample
+========================
 
-This is a Sample project to be used with coreDS Unreal and Unreal Engine 5. You can request a free trial at https://www.ds.tools/contact-us/trial-request/
+This is a sample project to be used with coreDS Unreal and Unreal Engine 5.2 or later. You can request a free trial at https://www.ds.tools/contact-us/trial-request/
 
-coreDS Unreal must already be installed and activated to use this project. Please make sure the coreDS Unreal plugin is enabled.
+coreDS Unreal must already be installed and activated to use this project. coreDS Unreal is not enabled by default: the sample's ``coreDSModelIntegration.uproject`` already enables it (``coreDSModule``).
 
-This sample is compatible with Unreal Engine 5.2 and later. Its assets are saved with Unreal Engine 5.2. Set the engine of ``coreDSModelIntegration.uproject`` to the version your coreDS Unreal plugin was built for.
+Its assets are saved with Unreal Engine 5.2. Set the engine of ``coreDSModelIntegration.uproject`` to the version your coreDS Unreal plugin was built for.
 
-This sample showcases the Model Integration approach (see "Automatic Object Support / Content provider support" in the coreDS Unreal user guide). A model written in C++ declares which variables, articulated parts, appearance flags and events it supports. coreDS Unreal discovers the model, spawns it for remote entities, drives it from DIS or HLA, and publishes the local instances, without any coreDS-specific code in the model.
+This sample showcases the Model Integration approach (see :doc:`/doc/ThirdPartyModelIntegration`). A model written in C++ declares which variables, articulated parts, appearance flags and events it supports. coreDS Unreal discovers the model, spawns it for remote entities, drives it from DIS or HLA, and publishes the local instances, without any coreDS-specific code in the model.
 
 The model is used two ways, side by side: directly as a C++ class, and through a Blueprint deriving from it. Both are discovered by coreDS Unreal and published to DIS, and a receiver spawns each remote tank with the class that sent it.
 
@@ -78,7 +78,7 @@ Each variable uses a different access mechanism from the specification:
      - What it tests
    * - ``TurretAzimuth``
      - UPROPERTY ``TurretAzimuth`` + callback ``OnTurretAzimuthUpdated``
-     - -π to π rad
+     - -3.1416 to 3.1416 rad
      - Direct property access, callback after a write
    * - ``GunElevation``
      - Setter ``SetGunElevation`` + getter ``GetGunElevation``, no UPROPERTY
@@ -101,8 +101,8 @@ Getting started
 ---------------
 
 #. Install coreDS Unreal in the engine or in the project's ``Plugins`` folder, then open ``coreDSModelIntegration.uproject`` and rebuild when asked.
-#. Run Tools > Distributed Simulation > coreDS Unreal > "Search for compatible assets ...". Both ``BP Model Integration Tank`` (the Blueprint) and ``Model Integration Tank`` (the C++ class) must be reported and listed in Edit > Project Settings > coreDS Unreal > Automatic Mode, the Blueprint first. The project already contains these entries (``Config/DefaultcoreDS.ini``), so this step checks that the discovery finds the model.
-#. Select ``DIS_Player1`` in the coreDS window and set the network adapter and the destination address for your network (see `DIS configuration`_).
+#. Run Tools > Distributed Simulation > coreDS Unreal > "Search for compatible assets ...". The window that opens must list both ``BP Model Integration Tank`` (the Blueprint) and ``Model Integration Tank`` (the C++ class), and both must be in the "Automatic Object Mode Mappings" of Edit > Project Settings > Plugins > coreDS (Automatic Mode category), the Blueprint first. The project already contains these entries (``Config/DefaultcoreDS.ini``), so this step checks that the discovery finds the model.
+#. Open Tools > Distributed Simulation > coreDS Unreal > Show coreDS UI, select ``DIS_Player1``, and set the network adapter, the destination address and the FOM file for your installation (see `DIS configuration`_).
 #. Play.
 
 DIS configuration
@@ -122,7 +122,7 @@ Incoming Entity State PDUs are mapped to ``AutomaticMode``. The EntityType becom
 The two configurations publish and receive the same objects. They use different application numbers (3001 and 3002), so two instances on the same network do not send the same EntityIDs. Before using them, set in the coreDS window:
 
 - The network adapter (``DISNIA``) and the destination address (``DISDestinationAddress``): ``DIS_Player1`` is set for a 192.168.50.x network and ``DIS_Player2`` for a 192.168.2.x network.
-- The FOM file, which is an absolute path to ``Plugins\coreDSModule\ThirdParty\coreDS\bin\VC143\x64\Release\DIS_V5_IEEE_1278.1-1995_expert.xml`` in this sample's folder. Change it if the sample or the plugin is elsewhere.
+- The FOM file. The configurations hold an absolute path on the computer that created them (``C:\code\ds.tools_git\...``): change it to your installation. The DIS FOM, ``DIS_V5_IEEE_1278.1-1995_expert.xml``, ships with coreDS Unreal in the plugin's ``ThirdParty/coreDS/bin`` folder (``coreDSModule/ThirdParty/coreDS/bin/VC143/x64/Release`` on Windows), in the engine or in the project's ``Plugins`` folder, depending on where you installed coreDS Unreal. The HLA configurations use ``Content/coreDS/RPR_v2.0.xml``.
 
 Testing both directions
 -----------------------
@@ -145,3 +145,16 @@ To test the events, send a Fire or Detonation PDU from another simulation. The t
 You can also test one direction at a time with any DIS tool sending or receiving entity types ``1.1.225.1.1.3.0`` and ``1.1.225.1.1.1.0``.
 
 The HLA configurations (``HLA_Player1.coreDS``, ``HLA_Player2.coreDS``) come from the Automatic Mode sample and do not publish the tanks yet.
+
+Regenerating the assets
+-----------------------
+
+``Scripts/CreateSampleAssets.py`` creates ``BP_ModelIntegrationTank`` and ``ModelIntegrationMap`` from the C++ model. It uses the Python Editor Script Plugin and the Editor Scripting Utilities, which the project enables for the editor.
+
+Build the ``coreDSModelIntegration`` module first, then run the script with the oldest supported engine, so the assets load in every later version:
+
+.. code-block:: bat
+
+   UnrealEditor-Cmd.exe <path>\coreDSModelIntegration.uproject -run=pythonscript -script="<path>\Scripts\CreateSampleAssets.py" -unattended -nosplash
+
+Existing assets are kept: delete them first to regenerate them.

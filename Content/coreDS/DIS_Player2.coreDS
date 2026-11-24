@@ -35,7 +35,7 @@
       "EnableTimeConstrained" : false,
       "EnableTimeRegulation" : false,
       "FOMFileList" : [
-         "C:codeds.tools_gitcoreDSUnrealSamplescoreDSUnreal_Sample_ModelIntegrationPluginscoreDSModuleThirdPartycoreDS\binVC143dReleaseDIS_V5_IEEE_1278.1-1995_expert.xml"
+         "C:\\code\\ds.tools_git\\coreDSUnreal\\Samples\\coreDSUnreal_Sample_ModelIntegration\\Plugins\\coreDSModule\\ThirdParty\\coreDS\\bin\\VC143\\x64\\Release\\DIS_V5_IEEE_1278.1-1995_expert.xml"
       ],
       "FederateName" : "",
       "FederateType" : "",
