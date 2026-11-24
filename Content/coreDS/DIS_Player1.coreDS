@@ -2,14 +2,14 @@
    "ConfigType" : 1,
    "DISConfig" : {
       "AutomaticEntityStateUpdateManagement" : true,
-      "DISAppNumber" : 3001,
-      "DISDestinationAddress" : "192.168.50.255",
+      "DISAppNumber" : 3020,
+      "DISDestinationAddress" : "255.255.255.255",
       "DISDisVer" : 5,
       "DISEnableExpertMode" : true,
       "DISExerciseID" : 1,
       "DISJoinMulticastGroup" : false,
       "DISMulticastAddress" : "239.0.0.1",
-      "DISNIA" : "192.168.50.162",
+      "DISNIA" : "0.0.0.0",
       "DISPort" : 3000,
       "DISRcvBuffSize" : 2048,
       "DISSiteNumber" : 1,
@@ -36,7 +36,7 @@
       "EnableTimeConstrained" : false,
       "EnableTimeRegulation" : false,
       "FOMFileList" : [
-         "C:\\code\\ds.tools_git\\coreDSUnreal\\Samples\\coreDSUnreal_Sample_ModelIntegration\\Plugins\\coreDSModule\\ThirdParty\\coreDS\\bin\\VC143\\x64\\Release\\DIS_V5_IEEE_1278.1-1995_expert.xml"
+         "DIS_V5_IEEE_1278.1-1995_expert.xml"
       ],
       "FederateName" : "",
       "FederateType" : "",

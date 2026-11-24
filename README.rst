@@ -119,10 +119,11 @@ Every tank published by coreDS Unreal is the local object ``AutomaticMode``, wha
 
 Incoming Entity State PDUs are mapped to ``AutomaticMode``. The EntityType becomes the ``ObjectClassSelector`` (``UseEntityTypeAsUniqueIdentifier.lua``), which selects the class to spawn: the first Automatic Mode mapping matching it is used, so 1.1.225.1.1.1.x spawns the Blueprint and 1.1.225.1.1.3.x spawns the C++ class. Location and orientation are converted back by ``convertPositionFromDISToUnreal.lua``, and Appearance and VariableParameters drive the tank's appearance and parts.
 
-The two configurations publish and receive the same objects. They use different application numbers (3001 and 3002), so two instances on the same network do not send the same EntityIDs. Before using them, set in the coreDS window:
+The two configurations publish and receive the same objects. They use different application numbers (3020 and 3021), so two instances on the same network do not send the same EntityIDs. They listen on every network adapter (``0.0.0.0``) and broadcast to ``255.255.255.255``; select your adapter in the coreDS window if your computer has several.
 
-- The network adapter (``DISNIA``) and the destination address (``DISDestinationAddress``): ``DIS_Player1`` is set for a 192.168.50.x network and ``DIS_Player2`` for a 192.168.2.x network.
-- The FOM file. The configurations hold an absolute path on the computer that created them (``C:\code\ds.tools_git\...``): change it to your installation. The DIS FOM, ``DIS_V5_IEEE_1278.1-1995_expert.xml``, ships with coreDS Unreal in the plugin's ``ThirdParty/coreDS/bin`` folder (``coreDSModule/ThirdParty/coreDS/bin/VC143/x64/Release`` on Windows), in the engine or in the project's ``Plugins`` folder, depending on where you installed coreDS Unreal. The HLA configurations use ``Content/coreDS/RPR_v2.0.xml``.
+All the coreDS Unreal samples can run at the same time and see each other's entities. Their DIS configurations are DIS 5 on port 3000, exercise 1, listen on every network adapter (``0.0.0.0``) and broadcast to ``255.255.255.255``; each sample has its own Application Number (Automatic Mode 3010, Model Integration 3020 and 3021, First Person Shooter 3030, C++ 3040, Cesium 3050), since two simulators with the same Site and Application Numbers get their entities mixed up. Their HLA configurations join the ``coreDSUnreal`` federation with the RPR FOM 2.0 through the DLC (Dynamic Link Compatible) 1516e plugin, each with its own federate name.
+
+The FOM files are given by name only. The DIS FOM, ``DIS_V5_IEEE_1278.1-1995_expert.xml``, ships with coreDS Unreal in the plugin's ``ThirdParty/coreDS/bin`` folder (``coreDSModule/ThirdParty/coreDS/bin/VC143/x64/Release`` on Windows), in the engine or in the project's ``Plugins`` folder, depending on where you installed coreDS Unreal. The HLA configurations use ``Content/coreDS/RPR_FOM_v2.0_1516-2010.xml``.
 
 Testing both directions
 -----------------------
